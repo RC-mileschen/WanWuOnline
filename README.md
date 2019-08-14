@@ -4,7 +4,7 @@
     "appid": "XXXXXXXXXXXXXXXXXXX",   
     "projectname": "%E4%B8%87%E7%89%A9%E5%9C%A8%E7%BA%BF",
 
-这两行为微信中对应的appid, 及小程序名称.(注:"%E4%B8%87%E7%89%A9%E5%9C%A8%E7%BA%BF" 是"万物在线" 的url编码, 如果使用了自已的名称, 请找一个在线转码工具转码, 比如http://tool.chinaz.com/Tools/urlencode.aspx)，**申请到appid以后请联系我司在后台配置方可正常使用。**
+这两行为微信中对应的appid, 及小程序名称，需要在[微信小程序公众平台](https://mp.weixin.qq.com/cgi-bin/wx)注册，(注:"%E4%B8%87%E7%89%A9%E5%9C%A8%E7%BA%BF" 是"万物在线" 的url编码, 如果使用了自已的名称, 请找一个在线转码工具转码, 比如http://tool.chinaz.com/Tools/urlencode.aspx)，**申请到appid以后请联系我司在后台配置方可正常使用。**
     
 如果微信使用了源码扫描, 不允许布署两套代码相同的小程序, 请自行修改，修改过程中请遵循BSD协议:  
 1. 保留LICENSE文件及其中的版权信息。    
