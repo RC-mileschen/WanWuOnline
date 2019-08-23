@@ -8,14 +8,14 @@
 申请到appid以后请把appid和appsecrect发送给我司在后台配置方可正常使用。
 
 服务器域名：  
-https://litapi.gmiot.net
-https://litapi.gpsoo.net
-https://litin.gmiot.net
-https://litin.gpsoo.net
-https://weixin.gmiot.net
-https://weixin.gpsoo.net
+https://litapi.gmiot.net  
+https://litapi.gpsoo.net  
+https://litin.gmiot.net  
+https://litin.gpsoo.net  
+https://weixin.gmiot.net  
+https://weixin.gpsoo.net  
 
-downloadFile合法域名：
+downloadFile合法域名：  
 https://s3.gpsoo.net
 
 业务域名：  
