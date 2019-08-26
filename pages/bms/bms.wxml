@@ -1,0 +1,65 @@
+<view class="bms">
+    <view class="batteryStatus">
+        <view class="img">
+            <view class="percentageImg" style="{{batteryVariation}}"></view>
+            <image src="./../images/largeBatteryEmpty.png"></image>
+        </view>
+        <view class="percentageText">
+            <view class="percent">{{batteryInfo.rel_capacity*100 + "%"}}</view>
+            <view class="batteryRemainingTxt">剩余电量</view>
+            <view class="shutBattery" hover-class="click" bindtap="batterySwitch">{{batteryInfo.mos > 0 ? "打开" : "关闭"}}电池</view>
+        </view>
+        <view class="update" hover-class="click" bindtap="getBatteryStatus">
+            <image src="./../images/updateBattery.png"></image>
+        </view>
+    </view>
+    <scroll-view class="batteryDetail" scroll-y>
+        <view class="item">
+            <text class="title">温度</text>
+            <text class="content">{{batteryInfo.temprature}} ℃</text>
+        </view>
+        <view class="item">
+            <text class="title">电压</text>
+            <text class="content">{{batteryInfo.voltage}} mV</text>
+        </view>
+        <view class="item">
+            <text class="title">电流</text>
+            <text class="content">{{batteryInfo.current}} mA</text>
+        </view>
+        <view class="item">
+            <text class="title">相对容量百分比</text>
+            <text class="content">{{batteryInfo.rel_capacity * 100 + "%"}}</text>
+        </view>
+        <view class="item">
+            <text class="title">绝对容量百分比</text>
+            <text class="content">{{batteryInfo.abs_capacity* 100 + "%"}}</text>
+        </view>
+        <view class="item">
+            <text class="title">剩余容量</text>
+            <text class="content">{{batteryInfo.capacity}} mAH</text>
+        </view>  
+        <view class="item">
+            <text class="title">满电容量</text>
+            <text class="content">{{batteryInfo.full_capacity}} mAH</text>
+        </view>   
+        <view class="item">
+            <text class="title">循环次数</text>
+            <text class="content">{{batteryInfo.circle}} 次</text>
+        </view>
+        <view class="item">
+            <text class="title">电池状态</text>
+            <text class="content">{{batteryInfo.mos ? "关闭" :"开启"}}</text>
+        </view>       
+        <view class="item" wx:for="{{batteryInfo.vlist}}" wx:for-index="key"  wx:for-item="value" wx:key="*this">
+            <text class="title">{{m1.replace(key)}}</text>
+            <text class="content">{{value}} mV</text>
+        </view>
+    </scroll-view>
+</view>
+<wxs module="m1">
+    function replace(str) {
+        var newStr = str.replace("v", "电池")
+        return newStr
+    }
+    module.exports.replace = replace
+</wxs>

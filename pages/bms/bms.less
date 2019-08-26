@@ -1,0 +1,104 @@
+Page {
+    height: 100%;
+}
+.bms {
+    height: 100%;
+    .batteryStatus {
+        background-image: linear-gradient(-180deg, #7E7E7E 0%, #474747 100%);
+        height: 235px;
+        position: relative;
+        float: left;
+        width: 100%;
+        .img {
+            float: left;
+            height:235px;
+            margin-left: 49px;
+            width: 104px;
+            position: relative;
+            image {
+                position: absolute;
+                z-index: 5;
+                margin-top: 25px;
+                width: 104px; 
+                height: 185px;
+                vertical-align: baseline;
+            }
+            .percentageImg {
+                position: absolute;
+                width: 74px;
+                left: 15px;
+                bottom: 40px;
+            }
+        }
+        .percentageText {
+            float: left;
+            height: 235px;
+            margin-left: 42px;
+            padding-top: 37px;
+            box-sizing: border-box;
+            .percent {
+                font-family: PingFangSC-Semibold;
+                font-size: 50px;
+                color: #FFFFFF;
+                letter-spacing: 0;
+            }
+            .batteryRemainingTxt {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #FFFFFF;
+                letter-spacing: 0;
+            }
+            .shutBattery {
+                width: 96px;
+                height: 32px;
+                margin-top: 13px;
+                background: #FFFFFF;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.30);
+                border-radius: 16px;
+                font-size: 14px;
+                text-align: center;
+                line-height: 32px;
+                &.click {
+                    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.50);
+                }
+            }
+        }
+        .update {
+            position: absolute;
+            right: 16px;
+            bottom:16px;
+            width: 100rpx;
+            height: 100rpx;
+            border-radius: 50%;
+            background: #A9A9A9;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.50);
+            text-align: center;
+            image {
+                margin-top: 25rpx;
+                height: 50rpx;
+                width: 60rpx;
+            }
+            &.click {
+                box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.50);
+            }
+        }
+    }
+    .batteryDetail {
+        height: 100%;
+        padding: 240px 40px 0;
+        box-sizing: border-box;
+        .item {
+            height: 40px;
+            border-bottom: 1rpx solid#C8C7CC;
+            font-size: 14px;
+            .title {
+                line-height: 40px;
+                float: left;
+            }
+            .content {
+                line-height: 40px;                
+                float: right;
+            }
+        }
+    }
+}
