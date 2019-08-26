@@ -14,13 +14,35 @@ Page({
   onLoad: function (options) {
     const that = this
     wx.login({
-      success: function (res) {
+      success: function (loginInfo) {
+        that.getWxOpenid(loginInfo,that.wxLogin)
+      },
+      fail: function (err) {
+        wx.showModal({
+          title: '登陆微信失败' + '(' + err + ')',
+          content: '登陆失败,请检查您的网络设置，稍后重试'
+        })
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+  wxLogin () {
+    const that = this;
+    wx.login({
+      success: function (loginInfo) {
         wx.request({
           url: 'https://litin.gmiot.net/1/auth/access_token',
           data: {
             method: 'loginByWechat',
-            wxcode:  res.code,
-            access_type: 'inner'
+            wxcode: loginInfo.code,
+            access_type: 'inner',
+            source: ''  // 使用开源代码的用户，需要向谷米提供小程序appid申请对应source字符串验证
           },
           success: function (res) {
             if (res.data.errcode === 0) {
@@ -41,13 +63,13 @@ Page({
             } else {
               wx.showModal({
                 title: '登陆失败',
-                  content: res.data.errcode + '登陆失败,请检查您的网络设置，稍后重试'
+                content: res.data.errcode + '登陆失败,请检查您的网络设置，稍后重试'
               })
             }
           },
           fail: function (err) {
             wx.showModal({
-              title: '登陆失败'+ '(' + err + ')',
+              title: '登陆失败' + '(' + err + ')',
               content: '登陆失败,请检查您的网络设置，稍后重试'
             })
           }
@@ -60,15 +82,24 @@ Page({
         })
       }
     })
+    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  getWxOpenid (login, cb) {
+    wx.request({
+      url: 'https://litin.gpsoo.net/1/auth/access_token',
+      data: {
+        method: 'getWxOpenid',
+        wxcode: login.code,
+        access_token: app.globalData.accessToken
+      },
+      success: function (res) {
+        if (res.data.errcode == 0) {
+          app.globalData.openId = res.data.data.openid;
+          cb(login)
+        }
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

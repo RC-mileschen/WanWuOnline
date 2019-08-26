@@ -1,4 +1,3 @@
-// pages/alarm.js
 const app = getApp();
 Page({
 
@@ -7,12 +6,61 @@ Page({
    */
   data: {
     login_type:'',
-    contactList: [{
+    alarmList: [{
       "alarm_type": "",
       "user_name": "",
       "send_time": "",
       "alarm_num":"",
-      "alarm_type_id":""    }]
+      "alarm_type_id":""
+      }],
+      alarmTypes: [
+        "Vibration",
+        "TeleCutoff",
+        "LowBattery",
+        "SOS",
+        "Overspeed",
+        "Offline",
+        "Enclosure",
+        "GeoFence",
+        "Move",
+        "OverstepLine",
+        "Overtime",
+        "PassStation",
+        "AheadOfSchedule", 
+        "OverspeedRoad",
+        "Turnround",
+        "OfflineMidway",
+        "LongTimeStop",
+        "AntennaShortCircuit",
+        "AntennaOpenCircuit",
+        "InBlindArea",
+        "OutOfBlindArea",
+        "GEOFenceIn",
+        "Boot",
+        "GPSFirstPositioning",
+        "EXBATALM",
+        "EXBATCUT",
+        "Starting",
+        "GeoAreaFence",
+        "Remove",
+        "Light",
+        "Magnet",
+        "Tamper",
+        "Bluetooth",
+        "SignalProhibit",
+        "FakeStation",
+        "Shield",
+        "EnterRiskArea",
+        "LeaveRiskArea",
+        "RiskAreaLongStay",
+        "HighPower",
+        "Collision",
+        "RapidAcceleration",
+        "QuickSlowdown",
+        "Overturn",
+        "SharpTurn",
+        "Open",
+      ]
 
   },
 
@@ -23,12 +71,9 @@ Page({
     let that = this
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
-      backgroundColor:                       app.globalData.appTheme.theme_color.color_whole
+      backgroundColor:app.globalData.appTheme.theme_color.color_whole
     })
-
-    that.getAlarm()
-
-
+    
   },
 
   /**
@@ -37,9 +82,6 @@ Page({
   getAlarm: function() {
     let that = this
     const url = 'https://litin.gmiot.net/1/tool/get_alarminfo?access_type=inner&cn=gm&lang=zh-CN&map_type=AMAP&method=getAlarmOverview&time=1510037579&timestamp=0'
-    console.log(app.globalData.accessToken)
-    console.log(app.globalData.imei)
-    console.log(app.globalData.account)
     if (app.globalData.imei){
       that.data.login_type = "dev"
     }else{
@@ -55,31 +97,23 @@ Page({
       url: url,
       data:data,
       success: function (res) {
-        console.log(res)
         if (res.data.errcode === 0) {
           let arr = res.data.data
-          console.log(arr)
           for (let i = 0; i < arr.length;i++){
             let date=new Date(Number(arr[i].send_time)*1000);
-            let Y = date.getFullYear() + '-';
-            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-            let D = date.getDate() + ' ';
-            let h = date.getHours() + ':';
-            let m = date.getMinutes() + ':';
-            let s = date.getSeconds();
-            console.log(Y + M + D + h + m + s); 
-            arr[i].send_time = Y + M + D + h + m + s
-            console.log(arr[i].send_time)
-            // console.log(time)
-            // res.data.data[i].send_time=time
+            let Y = date.getFullYear();
+            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+            let D = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
+            let h = date.getHours() > 9 ? date.getHours() : "0" + date.getHours();
+            let m = date.getMinutes() > 9 ? date.getMinutes() : "0" + date.getMinutes();
+            let s = date.getSeconds() > 9 ? date.getSeconds() : "0" + date.getSeconds();
+            arr[i].send_time = Y + '-' + M + '-' + D + ' '+ h + ':'+ m + ':' + s;
           }
           that.setData({
-            contactList: arr
+            alarmList: arr
           })
-          // that.data.contactList=res.data.data
-          console.log(that.data.contactList)
         } else {
-          console.log('111')
+          console.log(res.data.errcode)
         }
       }
     })
@@ -90,14 +124,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getAlarm();
   },
 
   /**
@@ -129,9 +163,7 @@ Page({
   },
 
   readDetail: function (e) {
-    console.log(e)
     var $data = e.currentTarget.dataset; 
-    console.log($data)
     wx.navigateTo({
       url: './../alarmDetails/alarmDetails?alarm_type=' + $data.alarm_type + "&user_name=" + $data.user_name + "&alarm_type_id=" + $data.alarm_type_id
     })

@@ -1,61 +1,58 @@
-/* pages/alarm/alarm.wxss */
-.container {  
-  height: 100%;  
-  display: flex;  
-  flex-direction: column;  
-  align-items: center;  
-  justify-content: space-between;  
-  padding: 200rpx 0;  
-  box-sizing: border-box;  
-} 
-.list-container{  
-  padding: 0  
-}  
-.list-item{  
-  height: 100rpx;  
-  display: flex;  
-  flex-direction: row; 
-  padding:5rpx;  
-}  
-.left{  
-  width: 80rpx;  
-  height:80rpx;  
-}  
-.right{  
-  width: 590rpx;  
-  height: 100rpx;  
-  margin-left: 20rpx;  
-  display: flex;  
-  flex-direction: row;  
-}  
-.title{  
-  flex: 1;  
-  display: flex;  
-  flex-direction: column;  
-  width: 310rpx;  
-}  
-.name{  
-  font-size: 30rpx;  
-  color: #000;  
-}  
-.phone{  
-  font-size: 25rpx;  
-  color:darkgrey;  
-}  
-.timea{   
-  display: flex;  
-  flex-direction: column;   
-} 
-.time{    
-  color: #aaa;  
-  font-size: 25rpx;  
-} 
-.num{  
-  border-radius: 50%;
+Page {
+  height: 100%;
+}
+.alarmBox {
+  padding: 0 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 100%;
+}
+.alarmBox .item {
+  height: 140rpx;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #ccc;
+  box-sizing: border-box;
+}
+.alarmBox .item > view {
+  display: inline-block;
+}
+.alarmBox .item .img {
+  height: 90rpx;
+  width: 90rpx;
+  float: left;
+}
+.alarmBox .item .img image {
+  height: 100%;
+  width: 100%;
+}
+.alarmBox .item .center {
+  margin-left: 26rpx;
+}
+.alarmBox .item .center .top {
+  font-size: 16px;
+}
+.alarmBox .item .center .bottom {
+  font-size: 13px;
+}
+.alarmBox .item .right {
+  float: right;
+  margin-right: 20rpx;
+}
+.alarmBox .item .right text {
+  display: block;
+}
+.alarmBox .item .right .top {
+  font-size: 12px;
+}
+.alarmBox .item .right .bottom {
+  margin-top: 6rpx;
+  float: right;
   background-color: red;
+  height: 50rpx;
+  border-radius: 25rpx;
+  min-width: 50rpx;
+  line-height: 50rpx;
   text-align: center;
-  font-size: 25rpx;  
-  color:rgb(250, 248, 248);
-  width: 25%;
-  margin-left: 160rpx;  
+  font-size: 12px;
+  box-sizing: border-box;
 }
