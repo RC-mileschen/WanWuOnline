@@ -86,7 +86,7 @@ Page({
   },
   getWxOpenid (login, cb) {
     wx.request({
-      url: 'https://litin.gpsoo.net/1/auth/access_token',
+      url: 'https://litin.gmiot.net/1/auth/access_token',
       data: {
         method: 'getWxOpenid',
         wxcode: login.code,
